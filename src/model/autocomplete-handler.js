@@ -12,80 +12,16 @@ import postdirektAutocomplete from 'postdirekt-autocomplete';
 export default class AddressAutocomplete {
 
     /**
-     * @property {int} typingDelay
-     */
-    typingDelay = 500;
-
-    /**
-     * @property {string} timeoutId
-     */
-    timeoutId = null;
-
-    /**
-     * @property {string} addressItemDivider
-     */
-    addressItemDivider = ', ';
-
-    /**
-     * @property {Map<string, string>} addressFields
-     */
-    addressFields = {};
-
-    /**
-     * @property {AutocompleteAddressSuggestions} addressSuggestions
-     */
-    addressSuggestions = {};
-
-    /**
-     * @property {AutocompleteAddressData} addressData
-     */
-    addressData = {};
-
-    /**
-     * @property {ListRenderer} datalistRenderer
-     */
-    datalistRenderer = {};
-
-    /**
-     * @property {DatalistSelect} datalistSelectAction
-     */
-    datalistSelectAction = {};
-
-    /**
-     * @property {CountrySelect} countrySelect
-     */
-    countrySelect = {};
-
-    /**
      *
-     * @property {string} deCountryId
-     */
-    deCountryId = '';
-
-    /**
-     *
-     * @property {SearchService}
-     */
-    searchService;
-
-    /**
-     *
-     * @property {SelectService}
-     */
-    selectService;
-
-    /**
-     *
-     * @param {{type: string, selector: string}[]} watchedFields
-     * @param {{type: string, selector: string}} countrySelect
+     * @param {{type: string, input: HTMLElement}[]} watchedFields
+     * @param {{type: string, input: HTMLElement}} countrySelect
      * @param {string} deCountryId
      * @param {string} token
      */
     constructor(watchedFields, countrySelect, deCountryId, token)
     {
         this.token = token;
-        this.stopEventPropagation = false;
-        this.addressFields = new Map(watchedFields.map(field => [field.type, field.selector]));
+        this.addressFields = new Map(watchedFields.map(field => [field.type, field.input]));
         this.addressSuggestions = new AutocompleteAddressSuggestions(this.addressFields);
         this.addressData = new AutocompleteAddressData();
         this.countrySelect = new CountrySelect(countrySelect, deCountryId);
@@ -95,8 +31,7 @@ export default class AddressAutocomplete {
 
     start()
     {
-        this.addressFields.forEach(function (selector, type) {
-            const fieldItem = document.querySelector(selector);
+      this.addressFields.forEach(function (fieldItem, type) {
             fieldItem.setAttribute('data-address-item', type);
             fieldItem.addEventListener('keyup', this.handleFieldKeystroke.bind(this));
             fieldItem.addEventListener('focus', this.handleFieldFocus.bind(this));

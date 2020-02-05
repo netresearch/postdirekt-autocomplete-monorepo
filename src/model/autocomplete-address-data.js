@@ -4,11 +4,9 @@
 
 export default class AutocompleteAddressData {
 
-    /**
-     * @type {{Object}}
-     */
-    addressData = {};
-
+    constructor() {
+        this.addressData = {};
+    }
     /**
      * setAddressData.
      *

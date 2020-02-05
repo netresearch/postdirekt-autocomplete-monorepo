@@ -3,33 +3,17 @@
  */
 
 export default class CountrySelect {
-
-    /**
-     *
-     * @property {boolean} isGermany
-     */
-    isGermany = false;
-
-    /**
-     *
-     * @property {string} germanCountryId
-     */
-    germanCountryId = null;
-
-
     /**
      * Initialize.
      *
-     * @param {{type: string, selector: string}} countrySelect
+     * @param {{type: string, input: HTMLElement}} countrySelect
      * @param {string} deCountryId
      *
      * @constructor
      */
     constructor(countrySelect, deCountryId)
     {
-        this.fieldType = countrySelect.type;
-        this.fielSelector = countrySelect.selector;
-        this.countrySelect = document.querySelector(this.fielSelector);
+        this.countrySelect = countrySelect.input;
         this.germanCountryId = deCountryId;
         if (this.countrySelect.value === this.germanCountryId) {
             this.isGermany = true;

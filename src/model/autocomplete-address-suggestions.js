@@ -3,15 +3,8 @@
  */
 
 export default class AutocompleteAddressSuggestions {
-
     /**
-     *
-     * @type {Object[]}
-     */
-    suggestions = [];
-
-    /**
-     * @param {Map<string,string>} autocompleteFields
+     * @param {Map<string, HTMLElement>} autocompleteFields
      *
      * @constructor
      */
@@ -67,7 +60,7 @@ export default class AutocompleteAddressSuggestions {
                 const addressParts = [];
 
                 // Combine all address items to suggestion string, divided by divider
-                this.autocompleteFields.forEach(function (selector, fieldName) {
+                this.autocompleteFields.forEach(function (input, fieldName) {
                     if (suggestionItem[fieldName] && suggestionItem[fieldName].length) {
                         addressParts.push(suggestionItem[fieldName]);
                     }

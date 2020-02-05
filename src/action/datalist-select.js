@@ -4,25 +4,11 @@
 
 export default class DatalistSelect {
     /**
-     * @property {Map<string, string>}
-     */
-    fields = {};
-
-    /**
-     * @property {AutocompleteAddressSuggestions}
-     */
-    addressSuggestions = {};
-
-    /**
-     * @property {Object}
-     */
-    currentSuggestionObject = {};
-
-    /**
      * Initialize.
      *
-     * @param {Map<string, string>} fields
+     * @param {Map<string, HTMLElement>} fields
      * @param {AutocompleteAddressSuggestions} addressSuggestions
+     *
      * @constructor
      */
     constructor(fields, addressSuggestions)
@@ -61,10 +47,7 @@ export default class DatalistSelect {
         }
         if (self.currentSuggestionObject.uuid) {
             // Fill all fields with response values
-            self.fields.forEach(function (selector, fieldName) {
-                // Get data selector with address item
-                const field = document.querySelector(selector);
-
+            self.fields.forEach(function (field, fieldName) {
                 if (field && self.currentSuggestionObject[fieldName]) {
                     field.value = self.currentSuggestionObject[fieldName];
                     addressData.setDataFromField(field);

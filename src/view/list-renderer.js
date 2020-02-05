@@ -4,22 +4,6 @@
 
 export default class ListRenderer {
     /**
-     * @param {AutocompleteAddressSuggestions}
-     */
-    suggestions = {};
-
-    /**
-     * @param {string}
-     */
-    divider = '';
-
-    /**
-     *
-     * @property {boolean} stopEventPropagation
-     */
-    stopEventPropagation = false;
-
-    /**
      * @param {AutocompleteAddressSuggestions} suggestions
      * @param {string} divider
      *
