@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "Node",
+    "target": "ES2020",
+    "module": "ES2015",
+    "lib": [
+      "es5",
+      "es2015",
+      "es7",
+      "dom"
+    ],
+    "strict": true,
+    "sourceMap": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "outDir": "dist/lib",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "test",
+    "node_modules"
+  ]
+}
