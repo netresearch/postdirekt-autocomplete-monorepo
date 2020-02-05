@@ -110,5 +110,7 @@
     "typedoc": "^0.15.5",
     "typescript": "^3.7.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "postdirekt-autocomplete": ">=0.1.0"
+  }
 }

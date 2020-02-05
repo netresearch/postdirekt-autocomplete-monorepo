@@ -16,6 +16,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
+    "allowJs": true,
+    "noImplicitAny": false,
     "outDir": "dist/lib",
     "typeRoots": [
       "node_modules/@types"
