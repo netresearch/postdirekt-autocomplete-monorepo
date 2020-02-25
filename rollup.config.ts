@@ -10,7 +10,7 @@ const pkg = require('./package.json');
 const libraryName = 'postdirekt-autocomplete-lib';
 
 export default {
-  input: `src/${libraryName}.js`,
+  input: `src/${libraryName}.ts`,
   output: [
     { file: `dist/browser/${libraryName}.umd.js`, name: camelCase(libraryName), format: 'umd', sourcemap: true },
     { file: `dist/browser/${libraryName}.amd.js`, name: camelCase(libraryName), format: 'amd', sourcemap: true },

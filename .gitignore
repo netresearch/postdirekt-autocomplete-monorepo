@@ -11,3 +11,5 @@ compiled
 .rpt2_cache
 docs
 yarn.lock
+package-lock.json
+junit.xml
