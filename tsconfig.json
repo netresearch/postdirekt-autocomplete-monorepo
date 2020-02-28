@@ -1,33 +1,41 @@
 {
-  "compilerOptions": {
-    "moduleResolution": "Node",
-    "target": "ES2020",
-    "module": "ES2015",
-    "lib": [
-      "es5",
-      "es6",
-      "es7",
-      "dom"
+    "compilerOptions": {
+        "baseUrl": ".",
+        "moduleResolution": "Node",
+        "target": "es5",
+        "module": "ES2015",
+        "lib": [
+            "es5",
+            "es6",
+            "es7",
+            "dom",
+            "ES2017"
+        ],
+        "downlevelIteration": true,
+        "strict": true,
+        "sourceMap": true,
+        "declaration": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "allowJs": true,
+        "noImplicitAny": false,
+        "outDir": "dist/lib",
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    },
+    "references": [
+        {
+            "path": "node_modules/postdirekt-autocomplete/tsconfig.json"
+        }
     ],
-    "strict": true,
-    "sourceMap": true,
-    "declaration": true,
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    "allowJs": true,
-    "noImplicitAny": false,
-    "outDir": "dist/lib",
-    "typeRoots": [
-      "node_modules/@types"
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "test",
+        "node_modules"
     ]
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "test",
-    "node_modules"
-  ]
 }

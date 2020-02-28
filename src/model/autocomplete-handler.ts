@@ -2,11 +2,11 @@
  * See LICENSE.md for license details.
  */
 
-import postdirektAutocomplete from 'postdirekt-autocomplete';
-import SearchService from 'postdirekt-autocomplete/dist/lib/service/search-service';
-import SelectService from 'postdirekt-autocomplete/dist/lib/service/select-service';
-import SearchResponse, { Address } from 'postdirekt-autocomplete/dist/lib/model/response/search-response';
-import AddressData from '../api/address-data';
+import { Subject as SearchSubjects } from 'postdirekt-autocomplete/src/api/search-subjects';
+import ServiceFactory from 'postdirekt-autocomplete/src/service/service-factory';
+import SearchServiceInterface from 'postdirekt-autocomplete/src/api/search-service-interface';
+import SelectServiceInterface from 'postdirekt-autocomplete/src/api/select-service-interface';
+import SearchResponse, { Address } from 'postdirekt-autocomplete/src/model/response/search-response';
 import AutocompleteAddressSuggestions from './autocomplete-address-suggestions';
 import AutocompleteDomAddress from './autocomplete-dom-address';
 import ListRenderer from '../view/list-renderer';
@@ -15,9 +15,9 @@ import AddressInputType from '../api/address-input-types';
 export default class AddressAutocomplete {
     private readonly navigationKeyCodes = ['ArrowUp', 'ArrowDown', 'Escape', 'Enter', 'Space', 'Tab'];
 
-    private readonly searchService: SearchService;
+    private readonly searchService: SearchServiceInterface;
 
-    private readonly selectService: SelectService;
+    private readonly selectService: SelectServiceInterface;
 
     private readonly inputMap: Map<AddressInputType, HTMLInputElement>;
 
@@ -44,8 +44,8 @@ export default class AddressAutocomplete {
         this.inputMap = inputMap;
         this.countrySelect = countrySelect;
         this.deCountryId = deCountryId;
-        this.searchService = postdirektAutocomplete.createSearchService(token) as SearchService;
-        this.selectService = postdirektAutocomplete.createSelectService(token);
+        this.searchService = ServiceFactory.createSearchService(token);
+        this.selectService = ServiceFactory.createSelectService(token);
         this.addressSuggestions = new AutocompleteAddressSuggestions();
         this.domAddress = new AutocompleteDomAddress(this.inputMap);
         this.listRenderer = new ListRenderer();
@@ -56,10 +56,6 @@ export default class AddressAutocomplete {
      */
     public start(): void {
         for (const [type, fieldItem] of this.inputMap) {
-            // Set the type of input into a data attribute
-            // to know the type when the element is triggering an event listener.
-            fieldItem.setAttribute('data-autocomplete-address-type', type);
-
             // Attach event listeners
             fieldItem.addEventListener('keyup', this.handleFieldKeystroke.bind(this));
             fieldItem.addEventListener('autocomplete:datalist-select', this.handleDatalistSelect.bind(this));
@@ -75,7 +71,7 @@ export default class AddressAutocomplete {
             return;
         }
 
-        if (this.navigationKeyCodes.includes(e.code)) {
+        if (!this.navigationKeyCodes.includes(e.code)) {
             this.triggerDelayedCallback(
                 () => this.searchAction(e.target as HTMLInputElement),
                 this.typingDelay,
@@ -88,8 +84,9 @@ export default class AddressAutocomplete {
      * and perform an API select request.
      */
     public handleDatalistSelect(e: Event): void {
-        const selectedOption = e.target as HTMLElement;
-        const suggestedAddress = this.addressSuggestions.getByUuid(selectedOption.id);
+        const field = e.target as HTMLInputElement;
+        const uuid = field.dataset.suggestionUuid as string;
+        const suggestedAddress = this.addressSuggestions.getByUuid(uuid);
 
         if (!suggestedAddress) {
             return;
@@ -132,9 +129,13 @@ export default class AddressAutocomplete {
      */
     private searchAction(currentField: HTMLInputElement): void {
         const addressData = this.domAddress.address;
-        const subject: postdirektAutocomplete.SearchSubjects = addressData.street
-            ? postdirektAutocomplete.SearchSubjects.PostalCodesCities
-            : postdirektAutocomplete.SearchSubjects.PostalCodesCitiesStreets;
+        const subject: SearchSubjects = addressData.street
+            ? SearchSubjects.PostalCodesCitiesStreets
+            : SearchSubjects.PostalCodesCities;
+
+        if (Object.values(addressData).join('').trim() === '') {
+            return;
+        }
 
         this.searchService.search(
             this.searchService.requestBuilder.create(
@@ -147,23 +148,17 @@ export default class AddressAutocomplete {
         ).then((response: SearchResponse) => {
             // Map search service response into AddressData array
             // and store them in suggestions model
-            this.addressSuggestions.suggestions = response.addresses.reduce(
-                (filtered: AddressData[], address: Address) => {
-                    // ignore all results with no uuid.
-                    if (!address.uuid) {
-                        return filtered;
-                    }
-                    filtered.push({
-                        street: address.street ?? '',
-                        postalCode: address.postalCode ?? '',
-                        city: address.city ?? '',
+            this.addressSuggestions.suggestions = response.addresses
+                .filter((address: Address) => !!address.uuid)
+                .map(
+                    (address: Address) => ({
+                        street: address.street || '',
+                        postalCode: address.postalCode || '',
+                        city: address.city || '',
                         uuid: address.uuid,
                         district: address.district,
-                    });
-                    return filtered;
-                },
-                [],
-            );
+                    }),
+                );
 
             /* Only render anything if the input is still active. */
             if (currentField === document.activeElement) {
@@ -183,7 +178,7 @@ export default class AddressAutocomplete {
             this.selectService.requestBuilder.create(
                 {
                     country: 'de',
-                    subject: postdirektAutocomplete.SearchSubjects.PostalCodesCitiesStreets,
+                    subject: SearchSubjects.PostalCodesCitiesStreets,
                     uuid,
                 },
             ),

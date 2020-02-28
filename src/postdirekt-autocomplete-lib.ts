@@ -5,12 +5,23 @@ import AddressAutocomplete from './model/autocomplete-handler';
 import AddressInputType from './api/address-input-types';
 
 const init = (
-    inputMap: Map<AddressInputType, HTMLInputElement>,
-    countrySelect: HTMLInputElement,
+    streetInput: HTMLInputElement,
+    cityInput: HTMLInputElement,
+    postalCodeInput: HTMLInputElement,
+    countryInput: HTMLInputElement,
     deCountryId: string,
     token: string,
 ): AddressAutocomplete => {
-    const autocomplete = new AddressAutocomplete(inputMap, countrySelect, deCountryId, token);
+    const autocomplete = new AddressAutocomplete(
+        new Map([
+            [AddressInputType.Street, streetInput],
+            [AddressInputType.PostalCode, postalCodeInput],
+            [AddressInputType.City, cityInput],
+        ]),
+        countryInput,
+        deCountryId,
+        token,
+    );
 
     autocomplete.start();
 

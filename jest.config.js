@@ -6,7 +6,7 @@ module.exports = {
     // bail: 0,
 
     // Respect "browser" field in package.json when resolving modules
-    // browser: false,
+    browser: true,
 
     // The directory where Jest should store its cached dependency information
     // cacheDirectory: "/tmp/jest_rt",
@@ -15,7 +15,7 @@ module.exports = {
     clearMocks: true,
 
     // Indicates whether the coverage information should be collected while executing the test
-    collectCoverage: true,
+    collectCoverage: false,
 
     // An array of glob patterns indicating a set of files for which coverage information should be collected
     collectCoverageFrom: ["src/**/*.ts"],
@@ -27,7 +27,6 @@ module.exports = {
     coveragePathIgnorePatterns: [
         "<rootDir>/node_modules/",
         "<rootDir>/test/",
-        "<rootDir>/src/postdirekt-autocomplete-lib.ts"
     ],
 
     // A list of reporter names that Jest uses when writing coverage reports
@@ -55,16 +54,22 @@ module.exports = {
 
     // A set of global variables that need to be available in all test environments
     globals: {
-        "__DEV__": true
+        "__DEV__": true,
+        "ts-jest": {
+            "diagnostics": {
+                "warnOnly": true
+            }
+        }
     },
 
     // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
     // maxWorkers: "50%",
 
     // An array of directory names to be searched recursively up from the requiring module's location
-    // moduleDirectories: [
-    //   "node_modules"
-    // ],
+    moduleDirectories: [
+      "node_modules",
+      "src",
+    ],
 
     // An array of file extensions your modules use
     moduleFileExtensions: [
@@ -115,7 +120,7 @@ module.exports = {
     // A list of paths to directories that Jest should use to search for files in
     roots: [
         "<rootDir>/src",
-        "<rootDir>/test"
+        "<rootDir>/test",
     ],
 
     // Allows you to use a custom runner instead of Jest's default test runner
@@ -141,7 +146,7 @@ module.exports = {
 
     // The glob patterns Jest uses to detect test files
     testMatch: [
-        "**/test/**/*.[jt]s?(x)",
+        "**/test/**/?(*.)+(spec|test).[tj]s?(x)",
         "**/test/?(*.)+(spec|test).[tj]s?(x)"
     ],
 
@@ -171,15 +176,15 @@ module.exports = {
     },
 
     // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-    // transformIgnorePatterns: [
-    //   "/node_modules/"
-    // ],
+    transformIgnorePatterns: [
+      "/node_modules/?!(postdirekt-autocomplete)"
+    ],
 
     // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
     // unmockedModulePathPatterns: undefined,
 
     // Indicates whether each individual test should be reported during the run
-    // verbose: undefined,
+    verbose: true,
 
     // An array of regexp patterns that are matched against all source file paths before re-running tests in watch mode
     // watchPathIgnorePatterns: [],

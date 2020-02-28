@@ -30,9 +30,9 @@ describe('Test for autocomplete DOM getters and setters', () => {
             street: 'NoNnEnStR',
         };
         const map = new Map<AddressInputType, HTMLInputElement>([
-            [AddressInputType.City, {} as HTMLInputElement],
-            [AddressInputType.Street, {} as HTMLInputElement],
-            [AddressInputType.PostalCode, {} as HTMLInputElement],
+            [AddressInputType.City, { value: '' } as HTMLInputElement],
+            [AddressInputType.Street, { value: '' } as HTMLInputElement],
+            [AddressInputType.PostalCode, { value: '' } as HTMLInputElement],
         ]);
         const subject = new AutocompleteDomAddress(map);
         subject.address = data;
