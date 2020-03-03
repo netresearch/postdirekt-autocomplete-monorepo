@@ -43,6 +43,7 @@ export default class AutocompleteDomAddress {
          */
         for (const [fieldName, field] of this.inputMap) {
             field.value = newAddressData[fieldName];
+            field.dispatchEvent(new Event('change'));
         }
     }
 }
