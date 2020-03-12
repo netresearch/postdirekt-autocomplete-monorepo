@@ -2,11 +2,11 @@
  * See LICENSE.md for license details.
  */
 
-import { Subject as SearchSubjects } from 'postdirekt-autocomplete/src/api/search-subjects';
-import ServiceFactory from 'postdirekt-autocomplete/src/service/service-factory';
-import SearchServiceInterface from 'postdirekt-autocomplete/src/api/search-service-interface';
-import SelectServiceInterface from 'postdirekt-autocomplete/src/api/select-service-interface';
-import SearchResponse, { Address } from 'postdirekt-autocomplete/src/model/response/search-response';
+import SearchSubject from '@postdirekt/autocomplete-sdk/src/api/search-subjects';
+import ServiceFactory from '@postdirekt/autocomplete-sdk/src/service/service-factory';
+import SearchServiceInterface from '@postdirekt/autocomplete-sdk/src/api/search-service-interface';
+import SelectServiceInterface from '@postdirekt/autocomplete-sdk/src/api/select-service-interface';
+import SearchResponse, { Address } from '@postdirekt/autocomplete-sdk/src/model/response/search-response';
 import AutocompleteAddressSuggestions from './autocomplete-address-suggestions';
 import AutocompleteDomAddress from './autocomplete-dom-address';
 import ListRenderer from '../view/list-renderer';
@@ -55,7 +55,7 @@ export default class AddressAutocomplete {
      * Initialize event listeners on the given address DOM inputs elements.
      */
     public start(): void {
-        for (const [type, fieldItem] of this.inputMap) {
+        for (const fieldItem of this.inputMap.values()) {
             // Attach event listeners
             fieldItem.addEventListener('keyup', this.handleFieldKeystroke.bind(this));
             fieldItem.addEventListener('autocomplete:datalist-select', this.handleDatalistSelect.bind(this));
@@ -129,9 +129,9 @@ export default class AddressAutocomplete {
      */
     private searchAction(currentField: HTMLInputElement): void {
         const addressData = this.domAddress.address;
-        const subject: SearchSubjects = addressData.street
-            ? SearchSubjects.PostalCodesCitiesStreets
-            : SearchSubjects.PostalCodesCities;
+        const subject: SearchSubject = addressData.street
+            ? SearchSubject.PostalCodesCitiesStreets
+            : SearchSubject.PostalCodesCities;
 
         if (Object.values(addressData).join('').trim() === '') {
             return;
@@ -178,7 +178,7 @@ export default class AddressAutocomplete {
             this.selectService.requestBuilder.create(
                 {
                     country: 'de',
-                    subject: SearchSubjects.PostalCodesCitiesStreets,
+                    subject: SearchSubject.PostalCodesCitiesStreets,
                     uuid,
                 },
             ),

@@ -87,7 +87,7 @@ export default class ListRenderer {
             return;
         }
 
-        const datalist = document.querySelector(`#datalist-${this.currentField.id}`);
+        const datalist = document.querySelector(`[id="datalist-${this.currentField.id}"]`);
         if (datalist) {
             datalist.remove();
         }
@@ -111,7 +111,7 @@ export default class ListRenderer {
             return;
         }
 
-        const dataList = document.querySelector(`#datalist-${this.currentField.id}`);
+        const dataList = document.querySelector(`[id="datalist-${this.currentField.id}"]`);
 
         if (!dataList) {
             return;

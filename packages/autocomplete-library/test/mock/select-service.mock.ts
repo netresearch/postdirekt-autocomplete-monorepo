@@ -1,6 +1,6 @@
-import SelectServiceInterface from 'postdirekt-autocomplete/src/api/select-service-interface';
+import SelectServiceInterface from '@postdirekt/autocomplete-sdk/src/api/select-service-interface';
 import SelectRequestBuilder
-    from 'postdirekt-autocomplete/src/model/request/select-request-builder';
+    from '@postdirekt/autocomplete-sdk/src/model/request/select-request-builder';
 
 export default class MockSelectService implements SelectServiceInterface {
     requestBuilder: SelectRequestBuilder;

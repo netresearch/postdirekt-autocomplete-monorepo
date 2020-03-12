@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "target": "ES5"
+    },
+    "references": [
+        {
+            "path": "packages/autocomplete-library/tsconfig.es5.json"
+        },
+        {
+            "path": "packages/autocomplete-sdk/tsconfig.es5.json"
+        },
+    ],
+}

@@ -17,8 +17,16 @@ module.exports = {
         "@typescript-eslint/indent": ["error", 4]
     },
     parserOptions: {
-        project: ['./tsconfig.eslint.json'],
+        project: ['./packages/*/tsconfig.eslint.json'],
     },
+    overrides: [
+        {
+            files: ["**/test/**/*.{ts,js}"],
+            rules: {
+                "import/no-extraneous-dependencies": "off"
+            }
+        }
+    ],
     env: {
         "browser": true,
         "es6": true

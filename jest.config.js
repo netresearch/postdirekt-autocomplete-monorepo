@@ -1,6 +1,6 @@
 module.exports = {
     // All imported modules in your tests should be mocked automatically
-    // automock: false,
+    automock: false,
 
     // Stop running tests after `n` failures
     // bail: 0,
@@ -18,15 +18,18 @@ module.exports = {
     collectCoverage: false,
 
     // An array of glob patterns indicating a set of files for which coverage information should be collected
-    collectCoverageFrom: ["src/**/*.ts"],
+    collectCoverageFrom: ["packages/**/src/**/*.ts"],
 
     // The directory where Jest should output its coverage files
     coverageDirectory: "coverage",
 
     // An array of regexp pattern strings used to skip coverage collection
     coveragePathIgnorePatterns: [
-        "<rootDir>/node_modules/",
-        "<rootDir>/test/",
+        ".*/node_modules/",
+        ".*/test/",
+        ".*/dist/",
+        ".*/tools/",
+        ".*/docs/",
     ],
 
     // A list of reporter names that Jest uses when writing coverage reports
@@ -58,17 +61,19 @@ module.exports = {
         "ts-jest": {
             "diagnostics": {
                 "warnOnly": true
-            }
+            },
+            tsConfig: 'tsconfig.es5.json'
         }
     },
 
     // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
-    // maxWorkers: "50%",
+    maxWorkers: "80%",
 
     // An array of directory names to be searched recursively up from the requiring module's location
     moduleDirectories: [
-      "node_modules",
-      "src",
+        "node_modules",
+        "packages/autocomplete-library/src",
+        "packages/autocomplete-sdk/src",
     ],
 
     // An array of file extensions your modules use
@@ -79,7 +84,9 @@ module.exports = {
     ],
 
     // A map from regular expressions to module names that allow to stub out resources with a single module
-    // moduleNameMapper: {},
+    moduleNameMapper: {
+        "@postdirekt/(.*)$": "<rootDir>/packages/$1"
+    },
 
     // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
     // modulePathIgnorePatterns: [],
@@ -119,15 +126,17 @@ module.exports = {
 
     // A list of paths to directories that Jest should use to search for files in
     roots: [
-        "<rootDir>/src",
-        "<rootDir>/test",
+        "<rootDir>/packages/autocomplete-library/",
+        "<rootDir>/packages/autocomplete-sdk/",
     ],
 
     // Allows you to use a custom runner instead of Jest's default test runner
     // runner: "jest-runner",
 
     // The paths to modules that run some code to configure or set up the testing environment before each test
-    // setupFiles: [],
+    setupFiles: [
+        "<rootDir>/packages/autocomplete-sdk/test/setup.js"
+    ],
 
     // A list of paths to modules that run some code to configure or set up the testing framework before each test
     // setupFilesAfterEnv: [],
@@ -172,12 +181,12 @@ module.exports = {
 
     // A map from regular expressions to paths to transformers
     "transform": {
-        ".ts": "ts-jest"
+        ".*\.ts": "ts-jest"
     },
 
     // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
     transformIgnorePatterns: [
-      "/node_modules/?!(postdirekt-autocomplete)"
+        "node_modules/?!(@?postdirekt)"
     ],
 
     // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them

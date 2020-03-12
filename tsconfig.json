@@ -1,41 +1,50 @@
 {
+    "files": [],
     "compilerOptions": {
-        "baseUrl": ".",
-        "moduleResolution": "Node",
-        "target": "es5",
-        "module": "ES2015",
-        "lib": [
-            "es5",
-            "es6",
-            "es7",
-            "dom",
-            "ES2017"
-        ],
-        "downlevelIteration": true,
+        "outDir": "dist",
+        "rootDir": ".",
         "strict": true,
-        "sourceMap": true,
-        "declaration": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
         "esModuleInterop": true,
-        "allowJs": true,
-        "noImplicitAny": false,
-        "outDir": "dist/lib",
-        "typeRoots": [
-            "node_modules/@types"
-        ]
+        "forceConsistentCasingInFileNames": true,
+        "downlevelIteration": true,
+        "baseUrl": ".",
+        "paths": {
+            "@postdirekt/*": [
+                "packages/*/src"
+            ]
+        },
+        "lib": [
+            "DOM",
+            "ESNext"
+        ],
+        "target": "ESNext"
     },
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "references": [
         {
-            "path": "node_modules/postdirekt-autocomplete/tsconfig.json"
-        }
-    ],
-    "include": [
-        "src"
+            "path": "packages/autocomplete-library"
+        },
+        {
+            "path": "packages/autocomplete-sdk"
+        },
     ],
     "exclude": [
-        "test",
-        "node_modules"
+        "**/node_modules",
+        "**/dist",
+        "**/build",
+        "**/test",
+        "**/spec",
+        "**/tools",
+        "**/*.test.ts",
+        "**/*.spec.ts"
     ]
 }
