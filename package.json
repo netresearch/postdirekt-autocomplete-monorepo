@@ -9,5 +9,8 @@
         "test": "jest --coverage",
         "build:es5": "tsc --build tsconfig.es5.json --force && rimraf dist &&  rollup -c rollup.config.js",
         "build": "tsc --build --force"
+    },
+    "devDependencies": {
+        "rollup-plugin-css-only": "^2.0.0"
     }
 }

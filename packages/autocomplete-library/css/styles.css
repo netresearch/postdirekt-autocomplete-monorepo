@@ -1,0 +1,33 @@
+.autocomplete-container {
+    position: relative;
+}
+
+.autocomplete-container .datalist {
+    position: absolute;
+    z-index: 100;
+    list-style: none;
+    background: white;
+    border-right:1px solid silver;
+    border-bottom: 1px solid silver;
+    border-left: 1px solid silver;
+    margin: 0;
+    padding: 0;
+    height: auto;
+}
+
+.autocomplete-container .datalist:empty {
+    display: none !important;
+}
+
+.autocomplete-container .datalist > li {
+    padding: 3px;
+    font: 15px "Helvetica Neue", Verdana, Arial, sans-serif;
+    line-height: 1.5;
+}
+
+.autocomplete-container .datalist > li:hover,
+.autocomplete-container .datalist > li[data-active]{
+    background: #3875d7;
+    color: white;
+}
+
