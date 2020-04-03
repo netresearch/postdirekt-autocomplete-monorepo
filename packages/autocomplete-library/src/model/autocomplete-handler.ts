@@ -2,11 +2,11 @@
  * See LICENSE.md for license details.
  */
 
-import SearchSubject from '@postdirekt/autocomplete-sdk/src/api/search-subjects';
-import ServiceFactory from '@postdirekt/autocomplete-sdk/src/service/service-factory';
-import SearchServiceInterface from '@postdirekt/autocomplete-sdk/src/api/search-service-interface';
-import SelectServiceInterface from '@postdirekt/autocomplete-sdk/src/api/select-service-interface';
-import SearchResponse, { Address } from '@postdirekt/autocomplete-sdk/src/model/response/search-response';
+import SearchSubject from '@netresearch/postdirekt-autocomplete-sdk/src/api/search-subjects';
+import ServiceFactory from '@netresearch/postdirekt-autocomplete-sdk/src/service/service-factory';
+import SearchServiceInterface from '@netresearch/postdirekt-autocomplete-sdk/src/api/search-service-interface';
+import SelectServiceInterface from '@netresearch/postdirekt-autocomplete-sdk/src/api/select-service-interface';
+import SearchResponse, { Address } from '@netresearch/postdirekt-autocomplete-sdk/src/model/response/search-response';
 import AutocompleteAddressSuggestions from './autocomplete-address-suggestions';
 import AutocompleteDomAddress from './autocomplete-dom-address';
 import ListRenderer from '../view/list-renderer';

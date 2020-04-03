@@ -1,4 +1,4 @@
-import ServiceFactory from '@postdirekt/autocomplete-sdk/src/service/service-factory';
+import ServiceFactory from '@netresearch/postdirekt-autocomplete-sdk/src/service/service-factory';
 import autocomplete from '../../src/postdirekt-autocomplete-lib';
 import FormTemplateProvider from '../provider/form-template-provider';
 import AddressDataProvider from '../provider/address-data-provider';
@@ -9,7 +9,7 @@ const mockSearchService = new MockSearchService(AddressDataProvider.getData());
 const mockCreateSearchService = jest.fn(() => mockSearchService);
 const mockSelectService = new MockSelectService();
 const mockCreateSelectService = jest.fn(() => mockSelectService);
-jest.mock('@postdirekt/autocomplete-sdk/src/service/service-factory',
+jest.mock('@netresearch/postdirekt-autocomplete-sdk/src/service/service-factory',
     () => jest.fn(
         () => (
             {
