@@ -1,6 +1,6 @@
-import SearchServiceInterface from '@postdirekt/autocomplete-sdk/src/api/search-service-interface';
-import SearchRequestBuilder from '@postdirekt/autocomplete-sdk/src/model/request/search-request-builder';
-import SearchResponse, { Address } from '@postdirekt/autocomplete-sdk/src/model/response/search-response';
+import SearchServiceInterface from '@netresearch/postdirekt-autocomplete-sdk/src/api/search-service-interface';
+import SearchRequestBuilder from '@netresearch/postdirekt-autocomplete-sdk/src/model/request/search-request-builder';
+import SearchResponse, { Address } from '@netresearch/postdirekt-autocomplete-sdk/src/model/response/search-response';
 
 export default class MockSearchService implements SearchServiceInterface {
     private addresses: Address[];

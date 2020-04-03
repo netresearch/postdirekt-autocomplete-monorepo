@@ -1,11 +1,12 @@
 {
-    "name": "@postdirekt/autocomplete-sdk",
-    "version": "0.0.0",
+    "name": "@netresearch/postdirekt-autocomplete-sdk",
+    "version": "1.0.0",
     "description": "SDK for the Deutsche Post Direkt Autocomplete API",
     "keywords": [],
-    "main": "dist/lib/postdirekt-autocomplete.js",
-    "module": "dist/browser/postdirekt-autocomplete.cjs.js",
-    "types": "dist/types/autocomplete.d.ts",
+    "main": "dist/browser/postdirekt-autocomplete.cjs.js",
+    "module": "dist/browser/postdirekt-autocomplete.esm.js",
+    "browser": "dist/browser/postdirekt-autocomplete.umd.js",
+    "types": "dist/postdirekt-autocomplete.d.ts",
     "files": [
         "dist/lib",
         "dist/browser",
@@ -14,21 +15,11 @@
     "author": "Paul Siedler <paul.siedler@netresearch.de>",
     "repository": {
         "type": "git",
-        "url": ""
+        "url": "https://github.com/netresearch/postdirekt-autocomplete-monorepo"
     },
     "license": "MIT",
     "engines": {
         "node": ">=10.0.0"
-    },
-    "scripts": {
-        "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-        "prebuild": "rimraf dist",
-        "build": "tsc  --target es5 && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
-        "start": "rollup -c rollup.config.ts -w",
-        "test": "jest --coverage",
-        "test:watch": "jest --coverage --watch",
-        "test:prod": "lint && yarn test --no-cache",
-        "deploy-docs": "ts-node tools/gh-pages-publish"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^11.0.1",

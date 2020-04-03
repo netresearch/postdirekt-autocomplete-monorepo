@@ -1,14 +1,15 @@
 {
-    "name": "@postdirekt/autocomplete-library",
+    "name": "@netresearch/postdirekt-autocomplete-library",
     "version": "1.0.0",
     "description": "Library for the Deutsche Post Direkt Autocomplete",
     "keywords": [
         "browser",
         "autocomplete"
     ],
-    "main": "dist/lib/postdirekt-autocomplete-lib.js",
-    "module": "dist/browser/postdirekt-autocomplete-lib.cjs.js",
-    "types": "dist/types/autocomplete-lib.d.ts",
+    "main": "dist/browser/postdirekt-autocomplete-lib.cjs.js",
+    "module": "dist/browser/postdirekt-autocomplete-lib.esm.js",
+    "browser": "dist/browser/postdirekt-autocomplete-lib.umd.js",
+    "types": "dist/postdirekt-autocomplete-lib.d.ts",
     "files": [
         "dist/lib",
         "dist/browser",
@@ -17,21 +18,11 @@
     "author": "Andreas Müller <andreas.mueller@netresearch.de>",
     "repository": {
         "type": "git",
-        "url": ""
+        "url": "https://github.com/netresearch/postdirekt-autocomplete-monorepo"
     },
     "license": "MIT",
     "engines": {
         "node": ">=10.0.0"
-    },
-    "scripts": {
-        "lint": "eslint '*/**/*.{js,ts,tsx}'",
-        "prebuild": "yarn run rimraf dist",
-        "build": "tsc --build && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
-        "start": "yarn run rollup -c rollup.config.ts -w",
-        "test": "yarn run jest --coverage",
-        "test:watch": "yarn run jest --coverage --watch",
-        "test:prod": "yarn lint && yarn test --no-cache",
-        "deploy-docs": "ts-node tools/gh-pages-publish"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^11.0.1",
@@ -62,6 +53,6 @@
         "typescript": "^3.7.3"
     },
     "dependencies": {
-        "@postdirekt/autocomplete-sdk": "*"
+        "@netresearch/postdirekt-autocomplete-sdk": "^1.0.0"
     }
 }

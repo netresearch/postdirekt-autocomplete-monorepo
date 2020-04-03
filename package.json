@@ -7,10 +7,12 @@
     "scripts": {
         "lint": "eslint '*/**/*.{js,ts,tsx}'",
         "test": "jest --coverage",
-        "build:es5": "tsc --build tsconfig.es5.json --force && rimraf dist &&  rollup -c rollup.config.js",
-        "build": "tsc --build --force"
+        "build:es5": "tsc --build tsconfig.es5.json --force && rimraf dist &&  rollup -c rollup.config.es5.js",
+        "build": "tsc --build --force && rimraf dist &&  rollup -c rollup.config.esnext.js"
     },
     "devDependencies": {
-        "rollup-plugin-css-only": "^2.0.0"
+        "rollup-plugin-css-only": "^2.0.0",
+        "rollup-plugin-terser": "^5.3.0",
+        "rollup-plugin-uglify": "^6.0.4"
     }
 }
