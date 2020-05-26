@@ -7,6 +7,7 @@ import ServiceFactory from '@netresearch/postdirekt-autocomplete-sdk/src/service
 import SearchServiceInterface from '@netresearch/postdirekt-autocomplete-sdk/src/api/search-service-interface';
 import SelectServiceInterface from '@netresearch/postdirekt-autocomplete-sdk/src/api/select-service-interface';
 import SearchResponse, { Address } from '@netresearch/postdirekt-autocomplete-sdk/src/model/response/search-response';
+import AddressType from '@netresearch/postdirekt-autocomplete-sdk/src/api/address-types';
 import AutocompleteAddressSuggestions from './autocomplete-address-suggestions';
 import AutocompleteDomAddress from './autocomplete-dom-address';
 import ListRenderer from '../view/list-renderer';
@@ -143,6 +144,7 @@ export default class AddressAutocomplete {
                     country: 'de',
                     subject,
                     combined: Object.values(addressData).join(' '),
+                    address_type: AddressType.A,
                 },
             ),
         ).then((response: SearchResponse) => {

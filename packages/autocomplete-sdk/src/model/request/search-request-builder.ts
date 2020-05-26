@@ -19,6 +19,10 @@ export default class SearchRequestBuilder implements RequestBuilderInterface {
 
     private readonly accessToken: string;
 
+    private readonly addressTypeSupported: SearchSubject[] = [
+        SearchSubject.PostalCodesCitiesDistrictsStreets,
+        SearchSubject.PostalCodesCitiesStreets,
+    ];
 
     constructor(baseUrl: string, accessToken: string) {
         this.baseUrl = baseUrl;
@@ -31,6 +35,11 @@ export default class SearchRequestBuilder implements RequestBuilderInterface {
      */
     create(options: SearchOptions): RequestInterface {
         const { subject, country, ...params } = options;
+
+        if (!params.address_type || !this.addressTypeSupported.includes(subject)) {
+            delete params.address_type;
+        }
+
         return new Request(
             this.buildUrl(country, subject, params as QueryParams),
             'GET',

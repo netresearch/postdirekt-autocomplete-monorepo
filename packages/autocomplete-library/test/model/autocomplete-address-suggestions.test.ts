@@ -1,6 +1,7 @@
 import AddressData from '../../src/api/address-data';
 import AddressDataProvider from '../provider/address-data-provider';
 import AutocompleteAddressSuggestions from '../../src/model/autocomplete-address-suggestions';
+import AddressType from '../../../autocomplete-sdk/src/api/address-types';
 
 describe('Test for Autocomplete suggestions', () => {
     it('properly set and return of suggestion item', () => {
@@ -9,7 +10,7 @@ describe('Test for Autocomplete suggestions', () => {
             postalCode: '04229',
             city: 'Leipzig',
             street: 'Nonnenstr.',
-            addressType: 'A',
+            addressType: AddressType.A,
         };
         const subject = new AutocompleteAddressSuggestions();
         subject.suggestions = AddressDataProvider.getData();

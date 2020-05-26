@@ -1,3 +1,4 @@
+import AddressType from './address-types';
 import SearchSubject from './search-subjects';
 
 /**
@@ -22,6 +23,7 @@ export interface QueryParams {
     postalCode?: string;
     street?: string;
     combined?: string;
+    address_type?: AddressType;
 }
 
 export interface SearchOptions extends QueryParams, PathParams {
