@@ -109,6 +109,7 @@ describe('Simulate search and see if results are rendered into a datalist', () =
             countryInput,
             FormTemplateProvider.getCountryValue(),
             'token',
+            'someHintText',
         );
         streetInput.value = 'abc';
         streetInput.focus();
@@ -134,6 +135,9 @@ describe('Simulate search and see if results are rendered into a datalist', () =
                 expect(streetInput.value).toEqual(address.street);
                 expect(cityInput.value).toEqual(address.city);
                 expect(postCodeInput.value).toEqual(address.postalCode);
+                // check that new hint input is being displayed on selection
+                const hintBox = document.getElementById(FormTemplateProvider.getHintBoxElementId());
+                expect(hintBox).toBeTruthy();
             },
             600,
         );

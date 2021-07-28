@@ -10,7 +10,6 @@ import SearchSubject from '../../api/search-subjects';
 import DefaultSettings from '../defaults';
 import Request from './request';
 
-
 /**
  * Request builder for search request
  */

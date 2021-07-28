@@ -24,4 +24,8 @@ export default class FormTemplateProvider {
     public static getCountryValue(): string {
         return 'DE';
     }
+
+    public static getHintBoxElementId(): string {
+        return 'autocomplete-hint';
+    }
 }

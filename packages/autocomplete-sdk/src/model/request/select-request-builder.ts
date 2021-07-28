@@ -4,7 +4,6 @@
 import RequestBuilderInterface, { SelectOptions, RequestInterface } from '../../api/request-builder-interface';
 import SearchRequestBuilder from './search-request-builder';
 
-
 /**
  * Request builder for select requests
  */

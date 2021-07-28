@@ -12,6 +12,7 @@ import AutocompleteAddressSuggestions from './autocomplete-address-suggestions';
 import AutocompleteDomAddress from './autocomplete-dom-address';
 import ListRenderer from '../view/list-renderer';
 import AddressInputType from '../api/address-input-types';
+import HintRenderer from '../view/hint-renderer';
 
 export default class AddressAutocomplete {
     private readonly navigationKeyCodes = ['ArrowUp', 'ArrowDown', 'Escape', 'Enter', 'Space', 'Tab'];
@@ -30,6 +31,8 @@ export default class AddressAutocomplete {
 
     private readonly listRenderer: ListRenderer;
 
+    private readonly hintRenderer: HintRenderer;
+
     private readonly deCountryId: string;
 
     private readonly typingDelay = 500;
@@ -41,6 +44,7 @@ export default class AddressAutocomplete {
         countrySelect: HTMLInputElement,
         deCountryId: string,
         token: string,
+        hint: string,
     ) {
         this.inputMap = inputMap;
         this.countrySelect = countrySelect;
@@ -50,6 +54,7 @@ export default class AddressAutocomplete {
         this.addressSuggestions = new AutocompleteAddressSuggestions();
         this.domAddress = new AutocompleteDomAddress(this.inputMap);
         this.listRenderer = new ListRenderer();
+        this.hintRenderer = new HintRenderer(hint);
     }
 
     /**
@@ -88,14 +93,17 @@ export default class AddressAutocomplete {
         const field = e.target as HTMLInputElement;
         const uuid = field.dataset.suggestionUuid as string;
         const suggestedAddress = this.addressSuggestions.getByUuid(uuid);
-
+        const streetField = this.inputMap.get(AddressInputType.Street);
         if (!suggestedAddress) {
             return;
         }
 
         this.domAddress.address = suggestedAddress;
-
         this.selectAction(suggestedAddress.uuid);
+
+        if (streetField && streetField === field) {
+            this.hintRenderer.render(streetField);
+        }
     }
 
     /**

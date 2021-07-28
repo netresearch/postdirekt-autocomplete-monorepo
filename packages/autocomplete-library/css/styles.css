@@ -31,3 +31,7 @@
     color: white;
 }
 
+.autocomplete-infoBox {
+    background-color:  #ffe664;
+    padding: 5px;
+}
