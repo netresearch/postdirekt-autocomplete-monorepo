@@ -83,6 +83,9 @@ export default class AddressAutocomplete {
                 this.typingDelay,
             );
         }
+        if (e.code !== 'Enter') {
+            this.hintRenderer.remove();
+        }
     }
 
     /**

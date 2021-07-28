@@ -31,8 +31,11 @@ export default class HintRenderer {
 
     public remove(): void {
         if (this.infoBox) {
-            this.infoBox.remove();
-            this.infoBox = undefined;
+            const removal = document.getElementById('autocomplete-hint');
+            if (removal && removal.parentNode) {
+                removal.parentNode.removeChild(removal);
+                this.infoBox = undefined;
+            }
         }
     }
 }
