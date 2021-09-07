@@ -33,6 +33,7 @@ postdirektAutocompleteLib.init(
         document.querySelector('[id="shipping:postcode"]'),
         document.querySelector('[name="shipping[country_id]"]'),
         'DE',
-        'YOUR_ACCESS_TOKEN'
+        'YOUR_ACCESS_TOKEN',
+        'YOUR_HOUSENUMBER_HINT_TEXT'
     );
 ```

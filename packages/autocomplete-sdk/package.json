@@ -1,6 +1,6 @@
 {
     "name": "@netresearch/postdirekt-autocomplete-sdk",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "SDK for the Deutsche Post Direkt Autocomplete API",
     "keywords": [],
     "main": "dist/browser/postdirekt-autocomplete.cjs.js",
