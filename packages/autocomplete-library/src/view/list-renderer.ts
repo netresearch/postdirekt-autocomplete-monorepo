@@ -54,8 +54,6 @@ export default class ListRenderer {
         inputElement.parentElement.appendChild(dataList);
         inputElement.parentElement.classList.add('autocomplete-container');
 
-        inputElement.setAttribute('list', `datalist-${inputElement.id}`);
-
         /**
          * Trigger an item select when a datalist option is clicked.
          */
