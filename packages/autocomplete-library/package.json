@@ -1,6 +1,6 @@
 {
     "name": "@netresearch/postdirekt-autocomplete-library",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "Library for the Deutsche Post Direkt Autocomplete",
     "keywords": [
         "browser",
