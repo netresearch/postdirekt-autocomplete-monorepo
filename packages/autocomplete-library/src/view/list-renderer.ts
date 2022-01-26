@@ -26,7 +26,7 @@ export default class ListRenderer {
         this.currentField = inputElement;
 
         /** Disable native autocomplete to avoid overlapping suggestions. */
-        inputElement.setAttribute('autocomplete', 'off');
+        inputElement.setAttribute('autocomplete', 'none');
 
         const dataList = document.createElement('ul');
         dataList.setAttribute('id', `datalist-${inputElement.id}`);
