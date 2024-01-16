@@ -12,6 +12,7 @@ const init = (
     deCountryId: string,
     token: string,
     hint?: string,
+    renderSuggestions = true,
 ): AddressAutocomplete => {
     const autocomplete = new AddressAutocomplete(
         new Map([
@@ -23,6 +24,7 @@ const init = (
         deCountryId,
         token,
         hint as string,
+        renderSuggestions,
     );
 
     autocomplete.start();
