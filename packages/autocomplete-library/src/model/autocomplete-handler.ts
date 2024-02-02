@@ -173,6 +173,13 @@ export default class AddressAutocomplete {
                     }),
                 );
 
+            document.dispatchEvent(
+                new CustomEvent(
+                    'autocomplete:suggestions-retrieve',
+                    { detail: { suggestions: this.addressSuggestions.suggestions } },
+                ),
+            );
+
             /* Only render anything if the input is still active. */
             if (currentField === document.activeElement) {
                 this.listRenderer.render(
