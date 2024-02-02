@@ -39,12 +39,15 @@ export default class AddressAutocomplete {
 
     private timeoutId?: number;
 
+    private readonly renderSuggestions: boolean;
+
     constructor(
         inputMap: Map<AddressInputType, HTMLInputElement>,
         countrySelect: HTMLInputElement,
         deCountryId: string,
         token: string,
         hint: string,
+        renderSuggestions: boolean,
     ) {
         this.inputMap = inputMap;
         this.countrySelect = countrySelect;
@@ -55,6 +58,7 @@ export default class AddressAutocomplete {
         this.domAddress = new AutocompleteDomAddress(this.inputMap);
         this.listRenderer = new ListRenderer();
         this.hintRenderer = new HintRenderer(hint);
+        this.renderSuggestions = renderSuggestions;
     }
 
     /**
@@ -181,7 +185,7 @@ export default class AddressAutocomplete {
             );
 
             /* Only render anything if the input is still active. */
-            if (currentField === document.activeElement) {
+            if (currentField === document.activeElement && this.renderSuggestions) {
                 this.listRenderer.render(
                     currentField,
                     this.addressSuggestions.suggestions,
