@@ -37,3 +37,8 @@ postdirektAutocompleteLib.init(
         'YOUR_HOUSENUMBER_HINT_TEXT'
     );
 ```
+
+### Additional Options
+
+The library also supports the following optional parameters:
+- `renderSuggestions` - boolean, default `true`. If `false`, the library will not render suggestions by itself. You can implement your own suggestion rendering by listening to the `'autocomplete:suggestions-retrieve'` event on the document.
