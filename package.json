@@ -5,7 +5,7 @@
         "packages/*"
     ],
     "scripts": {
-        "lint": "eslint '*/**/*.{js,ts,tsx}'",
+        "lint": "eslint 'packages/*/src/**/*.{js,ts,tsx}'",
         "test": "jest --coverage",
         "build:es5": "tsc --build tsconfig.es5.json --force && rimraf dist &&  rollup -c rollup.config.es5.js",
         "build": "tsc --build --force && rimraf dist &&  rollup -c rollup.config.esnext.js"
