@@ -1,7 +1,9 @@
 name: Publish Packages to npmjs
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - '*'
+
 jobs:
   sdk:
     runs-on: ubuntu-latest
@@ -14,9 +16,9 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           # Defaults to the user or organization that owns the workflow file
           scope: '@octocat'
-      - run: cd packages/autocomplete-sdk
       - run: yarn
-      - run: yarn publish --non-interactive --access public --new-version $CI_COMMIT_TAG --no-git-tag-version
+      - run: yarn build
+      - run: yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version packages/autocomplete-sdk
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v4
@@ -37,9 +39,9 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           # Defaults to the user or organization that owns the workflow file
           scope: '@octocat'
-      - run: cd packages/autocomplete-library
       - run: yarn
-      - run: yarn publish --non-interactive --access public --new-version $CI_COMMIT_TAG --no-git-tag-version
+      - run: yarn build
+      - run: yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version packages/autocomplete-library
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v4
@@ -48,3 +50,20 @@ jobs:
       - run: yarn publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
