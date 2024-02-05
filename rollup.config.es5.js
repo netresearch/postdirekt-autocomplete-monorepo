@@ -4,7 +4,7 @@ import sourceMaps from 'rollup-plugin-sourcemaps';
 import camelCase from 'lodash.camelcase';
 import typescript from 'rollup-plugin-typescript2';
 import css from 'rollup-plugin-css-only';
-import { uglify } from 'rollup-plugin-uglify';
+import uglify from '@lopatnov/rollup-plugin-uglify';
 
 const libraryName = 'postdirekt-autocomplete-lib';
 
