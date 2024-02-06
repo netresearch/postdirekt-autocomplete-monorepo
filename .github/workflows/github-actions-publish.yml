@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           registry-url: 'https://npm.pkg.github.com'
-      - run: yarn publish
+      - run: yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version packages/autocomplete-sdk
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
@@ -47,7 +47,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           registry-url: 'https://npm.pkg.github.com'
-      - run: yarn publish
+      - run: yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version packages/autocomplete-library
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
