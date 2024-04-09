@@ -180,7 +180,12 @@ export default class AddressAutocomplete {
             document.dispatchEvent(
                 new CustomEvent(
                     'autocomplete:suggestions-retrieve',
-                    { detail: { suggestions: this.addressSuggestions.suggestions } },
+                    {
+                        detail: {
+                            suggestions: this.addressSuggestions.suggestions,
+                            sourceElement: currentField,
+                        },
+                    },
                 ),
             );
 
