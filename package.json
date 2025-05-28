@@ -11,7 +11,7 @@
         "build": "tsc --build --force && rimraf dist &&  rollup -c rollup.config.esnext.js"
     },
     "devDependencies": {
-        "rollup-plugin-css-only": "^2.0.0",
+        "rollup-plugin-css-only": "^4.0.0",
         "rollup-plugin-terser": "^7.0.0",
         "@lopatnov/rollup-plugin-uglify": "^2.1.5"
     }
