@@ -12,3 +12,15 @@ coverage
 docs
 junit.xml
 **/*.tsbuildinfo
+
+# Build artifacts and temporary files
+*.zip
+rollup.*.js
+
+# AI development files
+.mcp.json
+CLAUDE.md
+TYPESCRIPT-5-MIGRATION.md
+prompt.txt
+eslint-config-*.json
+.claude/

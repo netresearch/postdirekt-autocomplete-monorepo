@@ -85,7 +85,8 @@ module.exports = {
 
     // A map from regular expressions to module names that allow to stub out resources with a single module
     moduleNameMapper: {
-        "@netresearch/postdirekt-(.*)$": "<rootDir>/packages/$1"
+        "@netresearch/postdirekt-(.*)$": "<rootDir>/packages/$1",
+        "\\.(css|less|scss|sass)$": "<rootDir>/test-utils/style-mock.js"
     },
 
     // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
