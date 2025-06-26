@@ -6,7 +6,7 @@
  * Definition of possible search address types
  */
 enum AddressType {
-    A = 'A', F = 'F', P = 'P'
+    A = 'A', F = 'F', P = 'P',
 }
 
 export default AddressType;
