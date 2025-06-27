@@ -3,6 +3,7 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     plugins: [
         '@typescript-eslint',
+        'import',
     ],
     extends: [
         'airbnb-typescript/base',
@@ -30,5 +31,12 @@ module.exports = {
     env: {
         "browser": true,
         "es6": true
+    },
+    settings: {
+        'import/resolver': {
+            typescript: {
+                project: ['./packages/*/tsconfig.json']
+            }
+        }
     }
 };

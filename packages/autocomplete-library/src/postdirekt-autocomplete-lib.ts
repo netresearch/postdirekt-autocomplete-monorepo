@@ -1,6 +1,7 @@
 /**
  * See LICENSE.txt for license details.
  */
+import '../css/styles.css';
 import AddressAutocomplete from './model/autocomplete-handler';
 import AddressInputType from './api/address-input-types';
 

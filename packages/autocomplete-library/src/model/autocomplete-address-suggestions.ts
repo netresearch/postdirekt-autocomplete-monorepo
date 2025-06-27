@@ -13,7 +13,7 @@ export default class AutocompleteAddressSuggestions {
     /**
      * Returns suggestion item with the given UUID.
      */
-    public getByUuid(uuid: string): AddressData|null {
+    public getByUuid(uuid: string): AddressData | null {
         return this.suggestions.find((item) => item.uuid === uuid) || null;
     }
 }
