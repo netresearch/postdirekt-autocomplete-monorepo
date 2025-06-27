@@ -19,7 +19,7 @@ export default {
         { file: `dist/browser/${libraryName}.system.js`, name: camelCase(libraryName), format: 'system', sourcemap: true },
     ],
     plugins: [
-        del({ targets: 'dist/*' }),
+        del({ targets: 'dist/*', runOnce: true }),
         resolve(),
         commonjs({ include: 'node_modules/**' }),
         css({ output: `dist/browser/styles.css` }),
@@ -31,6 +31,6 @@ export default {
         })
     ],
     watch: {
-        include: 'src/**',
+        include: 'packages/autocomplete-library/dist/**',
     },
 };
