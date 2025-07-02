@@ -15,16 +15,16 @@ jobs:
           node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
           # Defaults to the user or organization that owns the workflow file
-          scope: '@octocat'
+          scope: '@netresearch'
       - run: yarn
       - run: yarn build
-      - run: yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version packages/autocomplete-sdk
+      - run: cd packages/autocomplete-sdk && yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v4
         with:
           registry-url: 'https://npm.pkg.github.com'
-      - run: yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version packages/autocomplete-sdk
+      - run: cd packages/autocomplete-sdk && yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -38,16 +38,16 @@ jobs:
           node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
           # Defaults to the user or organization that owns the workflow file
-          scope: '@octocat'
+          scope: '@netresearch'
       - run: yarn
       - run: yarn build
-      - run: yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version packages/autocomplete-library
+      - run: cd packages/autocomplete-library && yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v4
         with:
           registry-url: 'https://npm.pkg.github.com'
-      - run: yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version packages/autocomplete-library
+      - run: cd packages/autocomplete-library && yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
