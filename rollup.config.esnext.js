@@ -37,7 +37,7 @@ export default [
             { file: `packages/autocomplete-library/dist/browser/${libraryName}.system.js`, name: camelCase(libraryName), format: 'system', sourcemap: true },
         ],
         plugins: createPlugins('packages/autocomplete-library/dist/browser', { hasCss: true }),
-        watch: { include: 'packages/autocomplete-library/src/**' },
+        watch: { include: 'packages/autocomplete-library/dist/**' },
     },
     {
         input: `packages/autocomplete-sdk/dist/${sdkName}.js`,
@@ -50,6 +50,6 @@ export default [
             { file: `packages/autocomplete-sdk/dist/browser/${sdkName}.system.js`, name: camelCase(sdkName), format: 'system', sourcemap: true },
         ],
         plugins: createPlugins('packages/autocomplete-sdk/dist/browser'),
-        watch: { include: 'packages/autocomplete-sdk/src/**' },
+        watch: { include: 'packages/autocomplete-sdk/dist/**' },
     },
 ];
