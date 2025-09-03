@@ -1,7 +1,7 @@
 # See here for image contents: https://github.com/microsoft/vscode-dev-containers/tree/v0.163.1/containers/typescript-node/.devcontainer/base.Dockerfile
 
 # [Choice] Node.js version: 14, 12, 10
-ARG VARIANT="22-bookworm"
+ARG VARIANT="24-bookworm"
 FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:${VARIANT}
 
 # [Optional] Uncomment this section to install additional OS packages.
