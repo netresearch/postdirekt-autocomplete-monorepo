@@ -24,3 +24,15 @@ TYPESCRIPT-5-MIGRATION.md
 prompt.txt
 eslint-config-*.json
 .claude/
+.serena/
+claudedocs/
+
+# Yarn 4 cache and install state
+.yarn/cache
+.yarn/install-state.gz
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
