@@ -6295,13 +6295,13 @@ __metadata:
   linkType: hard
 
 "rollup-plugin-css-only@npm:^4.5.2":
-  version: 4.5.2
-  resolution: "rollup-plugin-css-only@npm:4.5.2"
+  version: 4.5.5
+  resolution: "rollup-plugin-css-only@npm:4.5.5"
   dependencies:
     "@rollup/pluginutils": "npm:5"
   peerDependencies:
     rollup: <5
-  checksum: 10c0/22bcb5c499662249fbd88b6733bec9b52f59d4659be229a87f32cb2b8165362b96203de230ecc12ed4d65ca321961673bddb609c7a6004a5d498ae7854cf7d47
+  checksum: 10c0/02a883e231f5520b900360c4b3624d0b329f9f487e232a76592db41e998b7aad590b5417589eb353cbddf4b199a99c2b3f59624405bed5deac9040cb9060851e
   languageName: node
   linkType: hard
 
