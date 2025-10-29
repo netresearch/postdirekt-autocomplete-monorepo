@@ -8,7 +8,7 @@ jobs:
   sdk:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Enable Corepack
         run: corepack enable
       # Setup .npmrc file to publish to npm
@@ -33,7 +33,7 @@ jobs:
   library:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Enable Corepack
         run: corepack enable
       # Setup .npmrc file to publish to npm
@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Enable Corepack
         run: corepack enable
       - uses: actions/setup-node@v4
