@@ -5,20 +5,21 @@
         "packages/*"
     ],
     "scripts": {
-        "lint": "eslint 'packages/*/src/**/*.{js,ts,tsx}'",
-        "test": "jest --coverage",
-        "build:es5": "tsc --build tsconfig.es5.json --force && rollup -c rollup.config.es5.js",
-        "build": "tsc --build --force && rollup -c rollup.config.esnext.js"
+        "lint": "node_modules/.bin/eslint 'packages/*/src/**/*.{js,ts,tsx}'",
+        "test": "node_modules/.bin/jest --coverage",
+        "build:es5": "node_modules/.bin/tsc --build tsconfig.es5.json --force && node_modules/.bin/rollup -c rollup.config.es5.js",
+        "build": "node_modules/.bin/tsc --build --force && node_modules/.bin/rollup -c rollup.config.esnext.js"
     },
     "devDependencies": {
-        "rollup": "^4.44.0",
-        "@rollup/plugin-terser": "^0.4.4",
         "@rollup/plugin-commonjs": "^28.0.6",
         "@rollup/plugin-node-resolve": "^16.0.1",
-        "rollup-plugin-css-only": "^4.5.2",
-        "rollup-plugin-sourcemaps": "^0.6.3",
-        "rollup-plugin-delete": "^3.0.0",
+        "@rollup/plugin-terser": "^0.4.4",
         "lodash.camelcase": "^4.3.0",
+        "rollup": "^4.44.0",
+        "rollup-plugin-css-only": "^4.5.2",
+        "rollup-plugin-delete": "^3.0.0",
+        "rollup-plugin-sourcemaps": "^0.6.3",
         "tslib": "^2.6.2"
-    }
+    },
+    "packageManager": "yarn@4.10.3"
 }
