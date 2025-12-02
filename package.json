@@ -14,15 +14,20 @@
         "glob@^10": "^10.5.0"
     },
     "devDependencies": {
+        "@eslint/js": "^9.15.0",
         "@rollup/plugin-commonjs": "^28.0.6",
         "@rollup/plugin-node-resolve": "^16.0.1",
         "@rollup/plugin-terser": "^0.4.4",
+        "eslint": "^9.15.0",
+        "globals": "^16.0.0",
         "lodash.camelcase": "^4.3.0",
         "rollup": "^4.44.0",
         "rollup-plugin-css-only": "^4.5.2",
         "rollup-plugin-delete": "^3.0.0",
         "rollup-plugin-sourcemaps": "^0.6.3",
-        "tslib": "^2.6.2"
+        "tslib": "^2.6.2",
+        "typescript": "^5.4.0",
+        "typescript-eslint": "^8.15.0"
     },
     "packageManager": "yarn@4.10.3"
 }
