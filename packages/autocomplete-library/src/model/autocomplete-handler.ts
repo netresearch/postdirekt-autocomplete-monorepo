@@ -128,7 +128,7 @@ export default class AddressAutocomplete {
      */
     private triggerDelayedCallback(callback: () => void, delay: number): void {
         // Clear timeout to prevent previous task from execution
-        if (typeof this.timeoutId !== undefined) {
+        if (this.timeoutId !== undefined) {
             clearTimeout(this.timeoutId);
         }
 
