@@ -14,7 +14,7 @@ jobs:
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v6
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
           # Defaults to the user or organization that owns the workflow file
           scope: '@netresearch'
@@ -39,7 +39,7 @@ jobs:
       # Setup .npmrc file to publish to npm
       - uses: actions/setup-node@v6
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
           # Defaults to the user or organization that owns the workflow file
           scope: '@netresearch'
@@ -65,7 +65,7 @@ jobs:
         run: corepack enable
       - uses: actions/setup-node@v6
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           cache: 'yarn'
       - name: Build browser dropins
         run: |
