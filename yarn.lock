@@ -2662,7 +2662,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"del@npm:^8.0.0":
+"del@npm:^8.0.1":
   version: 8.0.1
   resolution: "del@npm:8.0.1"
   dependencies:
@@ -5260,13 +5260,13 @@ __metadata:
   linkType: hard
 
 "rollup-plugin-delete@npm:^3.0.0":
-  version: 3.0.1
-  resolution: "rollup-plugin-delete@npm:3.0.1"
+  version: 3.0.2
+  resolution: "rollup-plugin-delete@npm:3.0.2"
   dependencies:
-    del: "npm:^8.0.0"
+    del: "npm:^8.0.1"
   peerDependencies:
     rollup: "*"
-  checksum: 10c0/2fff62ade534307385f160e28f0b8c036ef884ae0a62a96ece0f8c79b7ae9ab965855528d590838679e89d27c301dd3dfa51dafd778ce7856d9d930e80d644bf
+  checksum: 10c0/c8a3c8c4468d0219c831347d2110033839e4e6730203160a58a68956d4d1ade5e01bb8f70bba7c96f430d22b2715fbc5b569e62af1eb7fb72bf9a6add685846f
   languageName: node
   linkType: hard
 
