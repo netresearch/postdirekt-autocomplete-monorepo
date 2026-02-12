@@ -16,7 +16,7 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
       # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
           node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
@@ -27,7 +27,7 @@ jobs:
       - run: cd packages/autocomplete-sdk && yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
           registry-url: 'https://npm.pkg.github.com'
       - run: cd packages/autocomplete-sdk && yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version
@@ -41,7 +41,7 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
       # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
           node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
@@ -52,7 +52,7 @@ jobs:
       - run: cd packages/autocomplete-library && yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
           registry-url: 'https://npm.pkg.github.com'
       - run: cd packages/autocomplete-library && yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version
@@ -66,10 +66,10 @@ jobs:
       contents: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
       - name: Enable Corepack
         run: corepack enable
-      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
           node-version: '22.x'
           cache: 'yarn'
