@@ -15,7 +15,7 @@ To download Node.js visit https://nodejs.org/en/download/.
 
 _NOTE: You can use a tool like [`NVM`](https://github.com/nvm-sh/nvm)
 or [`N`](https://github.com/tj/n) to install and manage multiple node versions.
-With NVM, run `nvm use` in the repo root to automatically switch to the correct version._
+With NVM, run `nvm install` in the repo root to automatically install and switch to the correct version._
 
 #### Yarn
 
@@ -29,7 +29,7 @@ Yarn will be automatically resolved from the `packageManager` field in `package.
 
 #### Verify Prerequisites
 
-You can verify your setup by running the following commands in your terminal:
+You can verify your setup by running the following commands in your terminal at the root of the repo:
 
 ```bash
 node -v
