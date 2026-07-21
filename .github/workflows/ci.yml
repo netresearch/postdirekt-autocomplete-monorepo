@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions: {}
+
+jobs:
+  node-ci:
+    uses: netresearch/.github/.github/workflows/node-ci.yml@main
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+      pull-requests: write
+    with:
+      package-manager: yarn
+      node-version: "22"
+      test-matrix: '["20","22"]'
+      install-cmd: yarn install --immutable
+      lint-cmd: yarn lint
+      build-cmd: yarn build && yarn build:es5
+      test-cmd: yarn test --ci
+      enable-type-check: false
+      enable-format-check: false
+      enable-build: true
+      enable-test: true
+      enable-gitleaks: true
+      audit-level: high
+    secrets:
+      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
