@@ -1,90 +1,77 @@
 name: Publish Packages to npmjs
+
+# Publishes both workspace packages to npm + GitHub Packages on a version tag,
+# and attaches the ES5 browser-dropins zip to a GitHub Release.
+#
+# Thin caller of the shared node-release reusable: one call per publishable
+# package (yarn install and build run at the repo ROOT, publish runs in the
+# package-path). Zero step-level `uses:`.
+#
+# Auth is NPM_TOKEN (no Trusted Publisher configured), so provenance is off and
+# the token is forwarded explicitly on both jobs. Keep the filename
+# github-actions-publish.yml; there is no Trusted Publisher binding today, so a
+# rename would not break npm, but there is no reason to rename it.
+#
+# NOTE: the previous workflow used Yarn-1 `yarn publish --new-version` syntax on
+# a Yarn-4 repo and has not published since 2025-02; this migration also repairs
+# that. version-source: tag rewrites each package.json to the tag version before
+# publish, exactly as `--new-version ${tag}` did.
+
 on:
   push:
     tags:
       - '*'
 
-permissions:
-  contents: read
-  packages: write
+permissions: {}
 
 jobs:
+  # Owns the single GitHub Release: builds the ES5 browser-dropins at the repo
+  # root and attaches the zip. Exactly ONE call per tag may set
+  # create-github-release: true.
   sdk:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Enable Corepack
-        run: corepack enable
-      # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
-        with:
-          node-version: '22.x'
-          registry-url: 'https://registry.npmjs.org'
-          # Defaults to the user or organization that owns the workflow file
-          scope: '@netresearch'
-      - run: yarn
-      - run: yarn build
-      - run: cd packages/autocomplete-sdk && yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
-        with:
-          registry-url: 'https://npm.pkg.github.com'
-      - run: cd packages/autocomplete-sdk && yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  library:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Enable Corepack
-        run: corepack enable
-      # Setup .npmrc file to publish to npm
-      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
-        with:
-          node-version: '22.x'
-          registry-url: 'https://registry.npmjs.org'
-          # Defaults to the user or organization that owns the workflow file
-          scope: '@netresearch'
-      - run: yarn
-      - run: yarn build
-      - run: cd packages/autocomplete-library && yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
-        with:
-          registry-url: 'https://npm.pkg.github.com'
-      - run: cd packages/autocomplete-library && yarn publish --non-interactive --access public --new-version ${{ github.ref_name }} --no-git-tag-version
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  release:
-    name: Create Release
-    runs-on: ubuntu-latest
+    uses: netresearch/.github/.github/workflows/node-release.yml@main
     permissions:
       contents: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - name: Enable Corepack
-        run: corepack enable
-      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
-        with:
-          node-version: '22.x'
-          cache: 'yarn'
-      - name: Build browser dropins
-        run: |
-          yarn
-          yarn build:es5
-          zip --junk-paths browser-dropins dist/browser/*
-      - name: Create Release with Assets
-        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2.5.0
-        with:
-          tag_name: ${{ github.ref_name }}
-          name: ${{ github.ref_name }}
-          draft: false
-          prerelease: false
-          files: browser-dropins.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      id-token: write
+      packages: write
+    with:
+      package-manager: yarn
+      node-version: '22'
+      install-cmd: yarn install --immutable
+      build-cmd: yarn build && yarn build:es5 && zip --junk-paths browser-dropins dist/browser/*
+      package-path: packages/autocomplete-sdk
+      version-source: tag
+      publish-npm: true
+      npm-access: public
+      provenance: false
+      publish-github-packages: true
+      skip-if-published: true
+      create-github-release: true
+      release-files: browser-dropins.zip
+      artifact-name: autocomplete-sdk-dist
+      prerelease: false
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  library:
+    uses: netresearch/.github/.github/workflows/node-release.yml@main
+    permissions:
+      contents: write
+      id-token: write
+      packages: write
+    with:
+      package-manager: yarn
+      node-version: '22'
+      install-cmd: yarn install --immutable
+      build-cmd: yarn build
+      package-path: packages/autocomplete-library
+      version-source: tag
+      publish-npm: true
+      npm-access: public
+      provenance: false
+      publish-github-packages: true
+      skip-if-published: true
+      create-github-release: false
+      artifact-name: autocomplete-library-dist
+    secrets:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
