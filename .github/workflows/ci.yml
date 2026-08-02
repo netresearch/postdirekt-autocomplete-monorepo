@@ -29,5 +29,3 @@ jobs:
       enable-test: true
       enable-gitleaks: true
       audit-level: high
-    secrets:
-      GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
