@@ -2422,14 +2422,14 @@ __metadata:
   linkType: hard
 
 "coveralls-next@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "coveralls-next@npm:6.0.1"
+  version: 6.0.2
+  resolution: "coveralls-next@npm:6.0.2"
   dependencies:
-    js-yaml: "npm:4.1.1"
+    js-yaml: "npm:4.2.0"
     lcov-parse: "npm:1.0.0"
   bin:
     coveralls: bin/coveralls.js
-  checksum: 10c0/3f5217f5bc47e4f87d784e2ac0623edd1d55debaaae63e509a06bccc06b0e9df92b7ecd5471c0e5216a55e978e1e13783e6cd37815215c8002250e784a836277
+  checksum: 10c0/7656541cccf43a56cc6ddace6c48e7d193c730eee5befe239d292cfdb8e74c0d9aaa34940820baf5fda0619241cae2ef8df9f9ab9cb815787c46080d9b7acdd3
   languageName: node
   linkType: hard
 
