@@ -44,6 +44,13 @@ jobs:
       publish-npm: true
       npm-access: public
       provenance: false
+      # The reusable stages publishes by default. `npm stage` needs npm
+      # >= 11.15.0, which Node bundles from 24.18.0; node-version '22' here is
+      # on npm 10.9.x and has no such command, so the reusable's guard fails
+      # closed. Opting out keeps today's behaviour — a direct publish with the
+      # forwarded NPM_TOKEN — unchanged. Removing this line requires raising
+      # node-version to 24 first.
+      staged-publish: false
       publish-github-packages: true
       skip-if-published: true
       create-github-release: true
@@ -69,6 +76,8 @@ jobs:
       publish-npm: true
       npm-access: public
       provenance: false
+      # Same opt-out as the sdk job above, for the same reason.
+      staged-publish: false
       publish-github-packages: true
       skip-if-published: true
       create-github-release: false
