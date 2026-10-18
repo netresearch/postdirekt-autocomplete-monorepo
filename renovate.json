@@ -1,1 +1,12 @@
-{"$schema":"https://docs.renovatebot.com/renovate-schema.json","extends":["github>netresearch/renovate-config"]}
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["github>netresearch/renovate-config"],
+    "packageRules": [
+        {
+            "description": "The root package.json resolutions (glob@^10, js-yaml, tar) pin transitive dependencies of the dev tooling to a patched release inside the major those tools depend on. Raising such a pin to a new major forces an API the dependents were not written for, so major updates of resolutions are disabled; patch and minor updates inside the pinned major stay enabled. Remove a pin, or raise it by hand, once no dependency needs the old major any more.",
+            "matchDepTypes": ["resolutions"],
+            "matchUpdateTypes": ["major"],
+            "enabled": false
+        }
+    ]
+}
