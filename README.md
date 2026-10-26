@@ -2,11 +2,13 @@
 
 ## Deprecation Notice
 
-In agreement with Deutsche Post Direkt GmbH, the **ADDRESSFACTORY** and **AUTOCOMPLETE** modules have been discontinued and are entering end-of-life.
+**The Deutsche Post Direkt service DATAFACTORY AUTOCOMPLETE itself is not affected and remains available for booking.**
 
-* No new customers will be onboarded for these modules by Deutsche Post Direkt.
-* Existing customers may continue to access the GitHub source code until approximately **June 2027**.
-* Official support for existing users will end on **December 31, 2026**.
+Only this frontend library (npm packages), used by the shop plugins, is being discontinued. In agreement with Deutsche Post Direkt GmbH, Netresearch ends development and support for it:
+
+* This library is no longer offered to new customers.
+* Official support for existing users of this library ends on **December 31, 2026**.
+* The source code remains available on GitHub until approximately **June 2027**.
 
 This monorepo contains the _@netresearch/postdirekt-autocomplete-library_ and _@netresearch/postdirekt-autocomplete-sdk_ npm packages.
 
