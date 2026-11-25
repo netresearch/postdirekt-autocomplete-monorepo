@@ -46,7 +46,7 @@
         "rollup-plugin-typescript2": "^0.37.0",
         "shelljs": "^0.10.0",
         "ts-jest": "^29.1.0",
-        "typescript": "^5.4.0"
+        "typescript": "^7.0.0"
     },
     "dependencies": {
         "@netresearch/postdirekt-autocomplete-sdk": "^1.1.0"
